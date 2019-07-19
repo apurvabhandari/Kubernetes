@@ -39,3 +39,62 @@ $ sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
 4- Verify the installation.
 
 `$ cfssl version`
+
+### Installing kubectl
+1- Download the binary.
+```
+$wget https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl
+```
+2- Add the execution permission to the binary.
+```
+$chmod +x kubectl
+```
+3- Move the binary to /usr/local/bin.
+```
+$sudo mv kubectl /usr/local/bin
+```
+4- Verify the installation.
+```
+$ kubectl version
+```
+
+### Installing the HAProxy load balancer
+As we will deploy three Kubernetes master nodes, we need to deploy an HAPRoxy load balancer in front of them to distribute the traffic.
+
+1- SSH to the 10.10.40.93 Ubuntu machine.
+
+2- Update the machine.
+```
+$ sudo apt-get update
+$ sudo apt-get upgrade
+```
+3- Install HAProxy.
+```
+$ sudo apt-get install haproxy
+```
+4- Configure HAProxy to load balance the traffic between the three Kubernetes master nodes.
+```
+$ sudo vim /etc/haproxy/haproxy.cfg
+global
+...
+default
+...
+frontend kubernetes
+bind 10.10.40.93:6443
+option tcplog
+mode tcp
+default_backend kubernetes-master-nodes
+
+
+backend kubernetes-master-nodes
+mode tcp
+balance roundrobin
+option tcp-check
+server k8s-master-0 10.10.40.90:6443 check fall 3 rise 2
+server k8s-master-1 10.10.40.91:6443 check fall 3 rise 2
+server k8s-master-2 10.10.40.92:6443 check fall 3 rise 2
+```
+5- Restart HAProxy.
+```
+$ sudo systemctl restart haproxy
+```
