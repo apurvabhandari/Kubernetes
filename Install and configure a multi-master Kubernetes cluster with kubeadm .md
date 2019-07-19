@@ -14,7 +14,7 @@ We also need an IP range for the pods. This range will be 10.30.0.0/16, but it i
 
 I will use my Linux desktop as a client machine to generate all the necessary certificates, but also to manage the Kubernetes cluster. If you don't have a Linux desktop, you can use the HAProxy machine to do the same thing.
 
-Installing the client tools
+### Installing the client tools
 We will need two tools on the client machine: the Cloud Flare SSL tool to generate the different certificates, and the Kubernetes client, kubectl, to manage the Kubernetes cluster.
 
 #### Installing cfssl
@@ -40,7 +40,7 @@ $ sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
 
 `$ cfssl version`
 
-### Installing kubectl
+#### Installing kubectl
 1- Download the binary.
 ```
 $wget https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl
@@ -58,7 +58,7 @@ $sudo mv kubectl /usr/local/bin
 $ kubectl version
 ```
 
-### Installing the HAProxy load balancer
+#### Installing the HAProxy load balancer
 As we will deploy three Kubernetes master nodes, we need to deploy an HAPRoxy load balancer in front of them to distribute the traffic.
 
 1- SSH to the 10.10.40.93 Ubuntu machine.
@@ -97,4 +97,97 @@ server k8s-master-2 10.10.40.92:6443 check fall 3 rise 2
 5- Restart HAProxy.
 ```
 $ sudo systemctl restart haproxy
+```
+### Generating the TLS certificates
+These steps can be done on your Linux desktop if you have one or on the HAProxy machine depending on where you installed the cfssl tool.
+
+#### Creating a certificate authority
+1- Create the certificate authority configuration file.
+```
+$ vim ca-config.json
+{
+  "signing": {
+    "default": {
+      "expiry": "8760h"
+    },
+    "profiles": {
+      "kubernetes": {
+        "usages": ["signing", "key encipherment", "server auth", "client auth"],
+        "expiry": "8760h"
+      }
+    }
+  }
+}
+```
+2- Create the certificate authority signing request configuration file.
+```
+$ vim ca-csr.json
+{
+  "CN": "Kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "IE",
+    "L": "Cork",
+    "O": "Kubernetes",
+    "OU": "CA",
+    "ST": "Cork Co."
+  }
+ ]
+}
+```
+3- Generate the certificate authority certificate and private key.
+```
+$ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+```
+4- Verify that the ca-key.pem and the ca.pem were generated.
+```
+$ ls -la
+```
+#### Creating the certificate for the Etcd cluster
+1- Create the certificate signing request configuration file.
+```
+$ vim kubernetes-csr.json
+{
+  "CN": "kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "IE",
+    "L": "Cork",
+    "O": "Kubernetes",
+    "OU": "Kubernetes",
+    "ST": "Cork Co."
+  }
+ ]
+}
+```
+2- Generate the certificate and private key.
+```
+$ cfssl gencert \
+-ca=ca.pem \
+-ca-key=ca-key.pem \
+-config=ca-config.json \
+-hostname=10.10.40.90,10.10.40.91,10.10.40.92,10.10.40.93,127.0.0.1,kubernetes.default \
+-profile=kubernetes kubernetes-csr.json | \
+cfssljson -bare kubernetes
+```
+3- Verify that the kubernetes-key.pem and the kubernetes.pem file were generated.
+```
+$ ls -la
+```
+4- Copy the certificate to each nodes.
+```
+$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.90:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.91:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.92:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.100:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.101:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.102:~
 ```
