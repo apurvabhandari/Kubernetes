@@ -194,7 +194,7 @@ $ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.102:~
 ### Preparing the nodes for kubeadm
 
 #### Preparing the 10.10.10.90/91/92/100/101/102 machine
-Performing below steps on each system
+Performing below steps on all systems
 ##### Installing Docker latest version
 ```
 $ sudo -s
