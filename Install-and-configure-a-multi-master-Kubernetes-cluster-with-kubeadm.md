@@ -222,3 +222,81 @@ deb http://apt.kubernetes.io kubernetes-xenial main
 # swapoff -a
 # sed -i '/ swap / s/^/#/' /etc/fstab
 ```
+
+### Installing and configuring Etcd
+
+#### Installing and configuring Etcd on the 10.10.10.90/91/92 machine (All 3 master)
+
+1- SSH to the 10.10.10.90 machine.
+2- Create a configuration directory for Etcd.
+```
+$ sudo mkdir /etc/etcd /var/lib/etcd
+```
+3- Move the certificates to the configuration directory.
+```
+$ sudo mv ~/ca.pem ~/kubernetes.pem ~/kubernetes-key.pem /etc/etcd
+```
+4- Download the etcd binaries.
+```
+wget https://github.com/etcd-io/etcd/releases/download/v3.3.13/etcd-v3.3.13-linux-amd64.tar.gz
+```
+5- Extract the etcd archive.
+```
+$ tar xvzf etcd-v3.3.13-linux-amd64.tar.gz
+```
+6- Move the etcd binaries to /usr/local/bin.
+```
+$ sudo mv etcd-v3.3.13-linux-amd64/etcd* /usr/local/bin/
+```
+7- Create an etcd systemd unit file.
+```
+$ sudo vim /etc/systemd/system/etcd.service
+[Unit]
+Description=etcd
+Documentation=https://github.com/coreos
+
+
+[Service]
+ExecStart=/usr/local/bin/etcd \
+  --name 10.10.10.90 \
+  --cert-file=/etc/etcd/kubernetes.pem \
+  --key-file=/etc/etcd/kubernetes-key.pem \
+  --peer-cert-file=/etc/etcd/kubernetes.pem \
+  --peer-key-file=/etc/etcd/kubernetes-key.pem \
+  --trusted-ca-file=/etc/etcd/ca.pem \
+  --peer-trusted-ca-file=/etc/etcd/ca.pem \
+  --peer-client-cert-auth \
+  --client-cert-auth \
+  --initial-advertise-peer-urls https://10.10.10.90:2380 \
+  --listen-peer-urls https://10.10.40.10:2380 \
+  --listen-client-urls https://10.10.10.90:2379,http://127.0.0.1:2379 \
+  --advertise-client-urls https://10.10.10.90:2379 \
+  --initial-cluster-token etcd-cluster-0 \
+  --initial-cluster 10.10.10.90=https://10.10.10.90:2380,10.10.10.91=https://10.10.10.91:2380,10.10.10.92=https://10.10.10.92:2380 \
+  --initial-cluster-state new \
+  --data-dir=/var/lib/etcd
+Restart=on-failure
+RestartSec=5
+
+
+
+[Install]
+WantedBy=multi-user.target
+```
+8- Reload the daemon configuration.
+```
+$ sudo systemctl daemon-reload
+```
+9- Enable etcd to start at boot time.
+```
+$ sudo systemctl enable etcd
+```
+10- Start etcd.
+```
+$ sudo systemctl start etcd
+```
+11- Verify that the cluster is up and running.
+```
+$ ETCDCTL_API=3 etcdctl member list
+```
+Perform all the steps on other Master (91 and 92) by replacing IP
