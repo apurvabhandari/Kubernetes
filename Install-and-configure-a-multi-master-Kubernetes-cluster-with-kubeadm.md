@@ -2,13 +2,13 @@
 ![img](https://github.com/apurvabhandari/kubernetes/blob/master/kubernets-logo.png)
 
 ### Prerequisites
-For this lab, we will use a standard Ubuntu 16.04 installation as a base image for the seven machines needed. The machines will all be configured on the same network, 10.10.40.0/24, and this network needs to have access to the Internet.
+For this lab, we will use a standard Ubuntu 16.04 or 18.04 installation as a base image for the seven machines needed. The machines will all be configured on the same network, 10.10.10.0/24, and this network needs to have access to the Internet.
 
-The first machine needed is the machine on which the HAProxy load balancer will be installed. We will assign the IP 10.10.40.93 to this machine.
+The first machine needed is the machine on which the HAProxy load balancer will be installed. We will assign the IP 10.10.10.93 to this machine.
 
-We also need three Kubernetes master nodes. These machines will have the IPs 10.10.40.90, 10.10.40.91, and 10.10.40.92.
+We also need three Kubernetes master nodes. These machines will have the IPs 10.10.10.90, 10.10.10.91, and 10.10.10.92.
 
-Finally, we will also have three Kubernetes worker nodes with the IPs 10.10.40.100, 10.10.40.101, and 10.10.40.102.
+Finally, we will also have three Kubernetes worker nodes with the IPs 10.10.10.100, 10.10.10.101, and 10.10.10.102.
 
 We also need an IP range for the pods. This range will be 10.30.0.0/16, but it is only internal to Kubernetes.
 
@@ -61,7 +61,7 @@ $ kubectl version
 #### Installing the HAProxy load balancer
 As we will deploy three Kubernetes master nodes, we need to deploy an HAPRoxy load balancer in front of them to distribute the traffic.
 
-1- SSH to the 10.10.40.93 Ubuntu machine.
+1- SSH to the 10.10.10.93 Ubuntu machine.
 
 2- Update the machine.
 ```
@@ -80,7 +80,7 @@ global
 default
 ...
 frontend kubernetes
-bind 10.10.40.93:6443
+bind 10.10.10.93:6443
 option tcplog
 mode tcp
 default_backend kubernetes-master-nodes
@@ -90,9 +90,9 @@ backend kubernetes-master-nodes
 mode tcp
 balance roundrobin
 option tcp-check
-server k8s-master-0 10.10.40.90:6443 check fall 3 rise 2
-server k8s-master-1 10.10.40.91:6443 check fall 3 rise 2
-server k8s-master-2 10.10.40.92:6443 check fall 3 rise 2
+server k8s-master-0 10.10.10.90:6443 check fall 3 rise 2
+server k8s-master-1 10.10.10.91:6443 check fall 3 rise 2
+server k8s-master-2 10.10.10.92:6443 check fall 3 rise 2
 ```
 5- Restart HAProxy.
 ```
@@ -174,7 +174,7 @@ $ cfssl gencert \
 -ca=ca.pem \
 -ca-key=ca-key.pem \
 -config=ca-config.json \
--hostname=10.10.40.90,10.10.40.91,10.10.40.92,10.10.40.93,127.0.0.1,kubernetes.default \
+-hostname=10.10.10.90,10.10.10.91,10.10.10.92,10.10.10.93,127.0.0.1,kubernetes.default \
 -profile=kubernetes kubernetes-csr.json | \
 cfssljson -bare kubernetes
 ```
@@ -184,10 +184,10 @@ $ ls -la
 ```
 4- Copy the certificate to each nodes.
 ```
-$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.90:~
-$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.91:~
-$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.92:~
-$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.100:~
-$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.101:~
-$ scp ca.pem kubernetes.pem kubernetes-key.pem sguyennet@10.10.40.102:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.90:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.91:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.92:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.100:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.101:~
+$ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.102:~
 ```
