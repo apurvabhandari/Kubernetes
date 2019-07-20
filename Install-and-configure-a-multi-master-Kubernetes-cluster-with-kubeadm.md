@@ -191,3 +191,34 @@ $ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.100:~
 $ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.101:~
 $ scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@10.10.10.102:~
 ```
+### Preparing the nodes for kubeadm
+
+#### Preparing the 10.10.10.90/91/92/100/101/102 machine
+Performing below steps on each system
+##### Installing Docker latest version
+```
+$ sudo -s
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sh get-docker.sh
+# usermod -aG docker your-user
+```
+#### Installing kubeadm, kublet, and kubectl
+1- Add the Google repository key.
+```
+# curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+```
+2- Add the Google repository.
+```
+# vim /etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io kubernetes-xenial main
+```
+3- Update the list of packages and install kubelet, kubeadm and kubectl.
+```
+# apt-get update
+# apt-get install kubelet kubeadm kubectl
+```
+4- Disable the swap.
+```
+# swapoff -a
+# sed -i '/ swap / s/^/#/' /etc/fstab
+```
