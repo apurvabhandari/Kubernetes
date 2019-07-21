@@ -469,6 +469,6 @@ $ kubectl get nodes
 ```
 
 
-## Contributors
+## Contributor
 
 - [Apurva Bhandari](apurvbhandari@gmail.com)
