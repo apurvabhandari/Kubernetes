@@ -437,6 +437,7 @@ $ sudo chmod +r /etc/kubernetes/admin.conf
 3- From the client machine, copy the configuration file.
 ```
 $ scp ubuntu@10.10.10.90:/etc/kubernetes/admin.conf .
+```
 4- Create and configure the kubectl configuration directory.
 ```
 $ mkdir ~/.kube
@@ -466,3 +467,8 @@ $ kubectl get pods -n kube-system
 ```
 $ kubectl get nodes
 ```
+
+
+## Contributors
+
+- [Apurva Bhandari](apurvbhandari@gmail.com)
