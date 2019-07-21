@@ -336,3 +336,80 @@ $ sudo kubeadm init --config=config.yaml
 $ sudo scp -r /etc/kubernetes/pki ubuntu@10.10.10.91:~
 $ sudo scp -r /etc/kubernetes/pki ubuntu@10.10.10.92:~
 ```
+#### Initializing the 2nd master node 10.10.10.91
+1- SSH to the 10.10.10.91 machine.
+2- Remove the apiserver.crt and apiserver.key.
+```
+$ rm ~/pki/apiserver.*
+```
+3- Move the certificates to the /etc/kubernetes directory.
+```
+$ sudo mv ~/pki /etc/kubernetes/
+```
+4 - Create the configuration file for kubeadm.
+```
+$ vim config.yaml
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: stable
+apiServerCertSANs:
+- 10.10.10.93
+controlPlaneEndpoint: "10.10.10.93:6443"
+etcd:
+  external:
+    endpoints:
+    - https://10.10.10.90:2379
+    - https://10.10.10.91:2379
+    - https://10.10.10.92:2379
+    caFile: /etc/etcd/ca.pem
+    certFile: /etc/etcd/kubernetes.pem
+    keyFile: /etc/etcd/kubernetes-key.pem
+networking:
+  podSubnet: 10.30.0.0/24
+apiServerExtraArgs:
+  apiserver-count: "3"
+  ```
+  5- Initialize the machine as a master node.
+  ```
+  $ sudo kubeadm init --config=config.yaml
+  ```
+  #### Initializing the 3rd master node 10.10.10.92
+  1- SSH to the 10.10.10.92 machine.
+  2- Remove the apiserver.crt and apiserver.key.
+  ```
+  $ rm ~/pki/apiserver.*
+  ```
+  3- Move the certificates to the /etc/kubernetes directory.
+  ```
+  $ sudo mv ~/pki /etc/kubernetes/
+  ```
+  4 - Create the configuration file for kubeadm.
+  ```
+  $ vim config.yaml
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: stable
+apiServerCertSANs:
+- 10.10.10.93
+controlPlaneEndpoint: "10.10.10.93:6443"
+etcd:
+  external:
+    endpoints:
+    - https://10.10.10.90:2379
+    - https://10.10.10.91:2379
+    - https://10.10.10.92:2379
+    caFile: /etc/etcd/ca.pem
+    certFile: /etc/etcd/kubernetes.pem
+    keyFile: /etc/etcd/kubernetes-key.pem
+networking:
+  podSubnet: 10.30.0.0/24
+apiServerExtraArgs:
+  apiserver-count: "3"
+  ```
+  5- Initialize the machine as a master node.
+  ```
+  $ sudo kubeadm init --config=config.yaml
+  ```
+  6- Copy the "kubeadm join" command line printed as the result of the previous command.
+  
+  
