@@ -61,7 +61,7 @@ $ kubectl version
 #### Installing the HAProxy load balancer
 As we will deploy three Kubernetes master nodes, we need to deploy an HAPRoxy load balancer in front of them to distribute the traffic.
 
-1- SSH to the 10.10.10.93 Ubuntu machine.
+1- SSH to the 10.10.10.93 Ubuntu machine.<br>
 
 2- Update the machine.
 ```
@@ -227,7 +227,7 @@ deb http://apt.kubernetes.io kubernetes-xenial main
 
 #### Installing and configuring Etcd on the 10.10.10.90/91/92 machine (All 3 master)
 
-1- SSH to the 10.10.10.90 machine.
+1- SSH to the 10.10.10.90 machine.<br>
 2- Create a configuration directory for Etcd.
 ```
 $ sudo mkdir /etc/etcd /var/lib/etcd
@@ -303,7 +303,7 @@ Perform all the steps on other Master (91 and 92) by replacing IP
 
 ### Initializing the master nodes
 #### Initializing the Master node 10.10.10.90
-1- SSH to the 10.10.10.90 machine.
+1- SSH to the 10.10.10.90 machine.<br>
 2- Create the configuration file for kubeadm.
 ```
 $ vim config.yaml
@@ -337,7 +337,7 @@ $ sudo scp -r /etc/kubernetes/pki ubuntu@10.10.10.91:~
 $ sudo scp -r /etc/kubernetes/pki ubuntu@10.10.10.92:~
 ```
 #### Initializing the 2nd master node 10.10.10.91
-1- SSH to the 10.10.10.91 machine.
+1- SSH to the 10.10.10.91 machine.<br>
 2- Remove the apiserver.crt and apiserver.key.
 ```
 $ rm ~/pki/apiserver.*
@@ -374,7 +374,7 @@ apiServerExtraArgs:
   $ sudo kubeadm init --config=config.yaml
   ```
   #### Initializing the 3rd master node 10.10.10.92
-  1- SSH to the 10.10.10.92 machine.
+  1- SSH to the 10.10.10.92 machine.<br>
   2- Remove the apiserver.crt and apiserver.key.
   ```
   $ rm ~/pki/apiserver.*
@@ -412,4 +412,57 @@ apiServerExtraArgs:
   ```
   6- Copy the "kubeadm join" command line printed as the result of the previous command.
   
+  ### Initializing the worker nodes
+  #### Initializing the worker node 10.10.10.100/101/102
+  1- SSH to the 10.10.100.100 machine.<br>
+  2- Execute the "kubeadm join" command that you copied from the last step of the initialization of the masters.
+  ```
+  $ sudo kubeadm join 10.10.40.93:6443 --token [your_token] --discovery-token-ca-cert-hash sha256:[your_token_ca_cert_hash]
+  ```
+  Run same command on worker node 101 and 102
   
+  #### Verifying that the workers joined the cluster
+  1- SSH to one of the master node.<br>
+  2- Get the list of the nodes.
+  ```
+  $ sudo kubectl --kubeconfig /etc/kubernetes/admin.conf get nodes
+  ```
+  
+### Configuring kubectl on the client machine
+1- SSH to one of the master node. 10.10.10.90 <br>
+2- Add permissions to the admin.conf file.
+```
+$ sudo chmod +r /etc/kubernetes/admin.conf
+```
+3- From the client machine, copy the configuration file.
+```
+$ scp ubuntu@10.10.10.90:/etc/kubernetes/admin.conf .
+4- Create and configure the kubectl configuration directory.
+```
+$ mkdir ~/.kube
+$ mv admin.conf ~/.kube/config
+$ chmod 600 ~/.kube/config
+```
+5- Go back to the SSH session on the master and change back the permissions of the configuration file.
+```
+$ sudo chmod 600 /etc/kubernetes/admin.conf
+```
+6- check that you can access the Kubernetes API from the client machine.
+```
+$ kubectl get nodes
+```
+
+### Deploying the overlay network
+We are going to use Calico as the overlay network. You can also use static route or another overlay network tool like Weavenet or Flannel. <br>
+1- Deploy the overlay network pods from the client machine.
+```
+$kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
+```
+2- Check that the pods are deployed properly.
+```
+$ kubectl get pods -n kube-system
+```
+3- Check that the nodes are in Ready state.
+```
+$ kubectl get nodes
+```
