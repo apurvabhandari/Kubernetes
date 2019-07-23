@@ -60,9 +60,9 @@ helm install --name nginx-ingress stable/nginx-ingress --set rbac.create=true
 kubectl get service nginx-ingress-controller
 ```
 Wait for few moments while GCP LB get deployed and it should show the external IP
-
-## Configure Ingress Resource 
 ![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/ingress-gcp.png) <br>
+## Configure Ingress Resource 
+
 1- Create a simple Ingress Resource file which uses the NGINX Ingress Controller. <br>
    This Ingress Resource defines an inbound L7 rule for path /hello to service hello-app on port 8080.
 ```
