@@ -35,3 +35,12 @@ kubectl get deployments -n kube-system
 ```
 
 ## Deploy an application in Kubernetes
+1- Deploying simple Hello-app
+```
+kubectl create deployment hello-app --image=gcr.io/google-samples/hello-app:1.0
+```
+2- Expose the hello-app Deployment as a Service 
+```
+kubectl expose deployment hello-app  --port=8080
+```
+## Deploying the NGINX Ingress Controller via Helm
