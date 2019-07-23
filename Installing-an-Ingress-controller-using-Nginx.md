@@ -95,3 +95,7 @@ kubectl get ingress ingress-resource
 ```
 http://external-ip-of-ingress-controller/hello
 ```
+
+## Contributor
+
+- [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
