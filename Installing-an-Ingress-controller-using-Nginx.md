@@ -1,5 +1,5 @@
 # Installing an Ingress controller using Nginx
-
+![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/ingress-example.png) <br>
 ## Prerequisite
 Kubernetes Cluster up and running with master and node or GKE or EKS or any other type of k8s setup.<br>
 Here we are using GCP as a cloud provider for ```LoadBalancer``` Service. In case if you do not want to use LoadBalancer you can skip the steps.
@@ -62,6 +62,7 @@ kubectl get service nginx-ingress-controller
 Wait for few moments while GCP LB get deployed and it should show the external IP
 
 ## Configure Ingress Resource 
+![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/ingress-gcp.png) <br>
 1- Create a simple Ingress Resource file which uses the NGINX Ingress Controller. <br>
    This Ingress Resource defines an inbound L7 rule for path /hello to service hello-app on port 8080.
 ```
