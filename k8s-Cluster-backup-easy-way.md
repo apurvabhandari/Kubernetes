@@ -6,6 +6,7 @@ kubectl get all --all-namespaces -o yaml > all-services.yaml
 ```
 
 ## ETCD Cluster Backup
+![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/etcd.png) <br>
 ### Backup of data directory
 ```
 etcd.services
