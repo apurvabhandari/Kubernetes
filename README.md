@@ -4,3 +4,4 @@
 ### Kubernetes Core Concept
 - [Install and configure a multi-master Kubernetes cluster with kubeadm](./Install-and-configure-a-multi-master-Kubernetes-cluster-with-kubeadm.md)
 - [Kubernetes backup easy way](./k8s-Cluster-backup-easy-way.md)
+- [Kubernetes Ingress Controller with Google Cloud LB](./Installing-an-Ingress-controller-using-Nginx.md)
