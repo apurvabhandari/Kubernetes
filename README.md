@@ -6,3 +6,4 @@
 - [Kubernetes backup easy way](./k8s-Cluster-backup-easy-way.md)
 - [Kubernetes Ingress Controller with Google Cloud LB](./Installing-an-Ingress-controller-using-Nginx.md)
 - [Kubernetes Debugging Sheet](./k8s-debug-cheatsheet.md)
+- [Replica Set Vs Replication Controller](./ReplicaSetVsReplicationController.md)
