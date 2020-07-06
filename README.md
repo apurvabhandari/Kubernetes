@@ -9,6 +9,11 @@
 - [Replica Set Vs Replication Controller](./ReplicaSetVsReplicationController.md)
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
 
+
+### My Talks Slides
+- Long Term Retention Data Monitoring with Thanos and Prometheus Stack for Kubernetes -[Thanos](./Thanos_Monitoring.pdf)
+
+
 ## References
 - [kubernetes.io](https://www.kubernetes.io)<br>
 
