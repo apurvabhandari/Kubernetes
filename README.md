@@ -8,3 +8,12 @@
 - [Kubernetes Debugging Sheet](./k8s-debug-cheatsheet.md)
 - [Replica Set Vs Replication Controller](./ReplicaSetVsReplicationController.md)
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
+
+## References
+- [kubernetes.io](https://www.kubernetes.io)<br>
+
+## Creator
+
+- [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
+
+Last Updated: July 6, 2020
