@@ -12,7 +12,7 @@
 
 ### My Talks Slides
 - Introduction to Kubernetes - [Kubernetes Intro](./slides/K8s_Introduction.pdf)<br>
-- Long Term Retention Data Monitoring with Thanos and Prometheus Stack for Kubernetes -[Thanos](./Thanos_Monitoring.pdf)
+- Long Term Retention Data Monitoring with Thanos and Prometheus Stack for Kubernetes -[Thanos](./slides/Thanos_Monitoring.pdf)
 
 
 ## References
