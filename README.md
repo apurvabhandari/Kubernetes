@@ -11,6 +11,7 @@
 
 
 ### My Talks Slides
+- Multi-Stage Build and Build Mount with Docker [Build Mount](./slides/Multi-StageBuildBuildMountWithDocker.pdf)<br>
 - Introduction to Kubernetes - [Kubernetes Intro](./slides/K8s_Introduction.pdf)<br>
 - Kubernetes101 - [k8s101](./slides/Kubernetes101.pdf)<br>
 - Long Term Retention Data Monitoring with Thanos and Prometheus Stack for Kubernetes -[Thanos](./slides/Thanos_Monitoring.pdf)
