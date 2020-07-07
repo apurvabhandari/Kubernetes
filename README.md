@@ -9,7 +9,9 @@
 - [Replica Set Vs Replication Controller](./ReplicaSetVsReplicationController.md)
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
 
-## Exam Resources [CKA/CKAD](./exam_prep/readme.md)<br>
+## Exam Resources 
+- [CKA/CKAD](./exam_prep/readme.md)<br>
+- [Docker](./exam_prep/readme.md)<br>
 
 ## My Talks Slides
 - Multi-Stage Build and Build Mount with Docker [Build Mount](./slides/Multi-StageBuildBuildMountWithDocker.pdf)<br>
