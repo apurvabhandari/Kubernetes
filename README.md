@@ -24,4 +24,4 @@
 
 - [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
 
-Last Updated: July 6, 2020
+Last Updated: July 7, 2020
