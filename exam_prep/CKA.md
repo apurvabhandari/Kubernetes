@@ -27,4 +27,7 @@
 15. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
 # Here is my certificate - CKA
-![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/exam_prep/CKA_Apurva.png)<br>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/exam_prep/CKA_Apurva.png">
+</p>
