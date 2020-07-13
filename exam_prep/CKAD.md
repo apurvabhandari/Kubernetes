@@ -8,5 +8,4 @@
 
 
 
-CKA_Apurva.png
 ![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/exam_prep/CKAD_Apurva.png)<br>
