@@ -54,3 +54,31 @@ systemctl daemon-relod
 service etcd restart
 service kube-apiserver start
 ```
+## Backup for fully-managed Cluster
+Consider you do not have access to ETCT or Master node<br>
+Following shell script you can use to take backup of running resources in your cluster. You can restore that by simply applying that files on your new cluster or existing cluster (gke, eks, aks, iks etc)
+```
+i=$((0))
+for n in $(kubectl get -o=custom-columns=NAMESPACE:.metadata.namespace,KIND:.kind,NAME:.metadata.name pv,pvc,configmap,ingress,service,secret,deployment,statefulset,hpa,job,cronjob --all-namespaces | grep -v 'secrets/default-token')
+do
+	if (( $i < 1 )); then
+		namespace=$n
+		i=$(($i+1))
+		if [[ "$namespace" == "PersistentVolume" ]]; then
+			kind=$n
+			i=$(($i+1))
+		fi
+	elif (( $i < 2 )); then
+		kind=$n
+		i=$(($i+1))
+	elif (( $i < 3 )); then
+		name=$n
+		i=$((0))
+		echo "saving ${namespace} ${kind} ${name}"
+		if [[ "$namespace" != "NAMESPACE" ]]; then
+			mkdir -p $namespace
+			kubectl get $kind -o=yaml $name -n $namespace > $namespace/$kind.$name.yaml
+		fi
+	fi
+done
+```
