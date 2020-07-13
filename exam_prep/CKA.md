@@ -9,6 +9,17 @@
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
 - Now let's start with actual exam preparation
+### Contents:
+- Application Lifecycle Management — 8%
+- Installation, Configuration & Validation — 12%
+- Core Concepts — 19%
+- Networking — 11%
+- Scheduling — 5%
+- Security — 12%
+- Cluster Maintenance — 11%
+- Logging / Monitoring — 5%
+- Storage — 7%
+- Troubleshooting — 10%
 
 1. Deployment
 2. Pod
