@@ -54,3 +54,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/exam_prep/CKA_Apurva.png">
 </p>
+
+### Creator
+Do reach out to me for any query regarding the exam.
+- [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
