@@ -7,12 +7,13 @@
 - Before appearing to the exam please go and check out the Latest Kubernetes API version. Exam is based on the latest Kuberntes version only.<br>
 - Some of the commands may be deprecated for the latest version and if you try those commands in exam then it will be a big chaos.<br>
 - I am writing this blog on the latest version of Kubernetes v1.18 - Kindly ref to [kubernetes.io](https://kubernetes.io) before your exam.<br>
-- For CKA you have enough time to solve all 24 questions in 3hrs so no need to alias for even kubectl=k or kubectl get po=kgpo
+- For CKA you have enough time to solve all 24 questions in 3hrs so no need to alias for even `kubectl=k` or `kubectl get po=kgpo`
 - For kubernetes cluster installation of master and worker nodes - Do not go for KTHW (Kubernetes The Hard Way). It is clearly mentioned that install clusters with kubeadm only. So be handy only with kubeadm and kubeadm flags and options.
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
 - For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control+ insert` for paste - `shift + insert` keep this handy.
 - Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim` a file editor, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
+- This is an actual hands-on practical exam. So please do not ask for dumps or questions that appear in the exam.
 - Now let's start with actual exam preparation
 ### Contents:
 - Application Lifecycle Management — 8%
