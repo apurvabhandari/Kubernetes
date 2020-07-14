@@ -15,7 +15,7 @@
 - Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim` a file editor, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
 - This is an actual hands-on practical exam. So please do not ask for dumps or questions that appear in the exam.
 - Now let's start with actual exam preparation
-### Contents:
+## Contents:
 - Application Lifecycle Management — 8%
 - Installation, Configuration & Validation — 12%
 - Core Concepts — 19%
@@ -27,7 +27,25 @@
 - Storage — 7%
 - Troubleshooting — 10%
 
-1. Deployment
+#### For creating any resource please use dry run at the end and save it in file so that it will be easy to deploy - pod, deployment, service, etc `-o yaml --dry-run=client` <br>
+
+### 1. Deployment <br>
+   Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
+   To create simple deployment <br>
+   `kubectl create deployment nginx --image=nginx` <br>
+   Custom deployment if you want to edit or modify. Open deployment.yaml make the changes and save it.<br>
+   `kubectl create deployment nginx --image=nginx -o yaml --dry-run=client > deployment.yaml` <br>
+   Once changes saved then,<br>
+   `kubectl apply -f deployment.yaml`<br>
+   To verify deployment,<br>
+   `kubectl get deployment`<br>
+   `kubectl describe deployment nginx`<br>
+   To scale deployment = 2<br>
+   `kubectl scale deployment nginx replicas=2`<br>
+   To expose deployment on port = 80 as a ClusterIP or accessing service within the Cluster<br>
+   `kubectl expose deployment nginx --name=nginx-service --port=80 --targetPort=80 --type=ClusterIP`<br>
+   ##### Note: Do not use `kubectl run nginx --image-nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
+   
 2. Pod
 3. Multicontainer
 4. secret
@@ -46,7 +64,7 @@
 17. rbac
 18. rolebinding and clusterbiding
 19. ETCD backup
-20. multi-container
+
 21. pod troubleshoot
 16. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
