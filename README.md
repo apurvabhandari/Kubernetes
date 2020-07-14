@@ -1,5 +1,7 @@
 # Kubernetes
-![img](https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/kubernets-logo.png) <br>
+<p align="center">
+  <img width="400" height="200" src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/kubernets-logo.png">
+</p>
 
 ## Kubernetes Core Concept
 - [Install and configure a multi-master Kubernetes cluster with kubeadm](./Install-and-configure-a-multi-master-Kubernetes-cluster-with-kubeadm.md)
@@ -10,8 +12,7 @@
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
 
 ## Exam Resources 
-- [CKA/CKAD](./exam_prep/readme.md)<br>
-- [Docker](./exam_prep/readme.md)<br>
+- [CKA & CKAD](./exam_prep/readme.md)<br>
 
 ## My Talks Slides
 - Multi-Stage Build and Build Mount with Docker [Build Mount](./slides/Multi-StageBuildBuildMountWithDocker.pdf)<br>
