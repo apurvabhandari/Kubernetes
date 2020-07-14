@@ -199,8 +199,45 @@ spec:
 ### 9. RBAC<br>
 
 ### 10. ETCD Backup<br>
+- Taking backup Ref - [kubernetes etcd backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#built-in-snapshot)<br>
+```
+$export ETCDCTL_API=3
+## check options with help command
+$etcdctl --help
+## copy the cert path from below command
+$kubectl describe pod -n kube-system etcd-master
+## please verify the path from above command 
+$etcdctl snapshot save snapshotdb.db --endpoints=127.0.0.1:2379 --cacert="/etc/kubernetes/pki/etcd/ca.crt" --cert="/etc/kubernetes/pki/etcd/server.crt" --key="/etc/kubernetes/pki/etcd/server.key"
+```
+- Verify snapshot<br>
+  `etcdctl --write-out=table snapshot status snapshotdb.db`<br>
 
 ### 11. Cluster Installation<br>
+- kubeadm installation on both node Master and Worker Node. `ssh` to master and worker node for installation. Ref - [kubernetes kubeadm installation](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)<br>
+```
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+systemctl daemon-reload
+systemctl restart kubelet
+```
+- kubeadm init to initialize cluster check if any arguments has asked while initialize the cluster - Master node only Ref - [kubernetes kubeadm initialize](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)<br>
+```
+kubeadm init <args>
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+- Join Worker node - Copy this from init command and run this on Worker node Only<br>
+`  kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>`<br>
+- Confirm nodes it should be in Ready state <br>
+`kubectl get nodes`<br>
 
 ### 12. Cluster troubleshoot<br>
 
