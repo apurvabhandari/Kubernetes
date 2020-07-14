@@ -28,24 +28,25 @@
 - Troubleshooting — 10%
 
 #### For creating any resource please use dry run at the end and save it in file so that it will be easy to deploy - pod, deployment, service, etc `-o yaml --dry-run=client` <br>
+#### In case if you want to change namespace `kubectl config set-context $(kubectl config current-context) --namespace=default`
 ## Preparation
 ### 1. Deployment <br>
-   Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
-   To create simple deployment <br>
+-   Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
+-   To create simple deployment <br>
    `$kubectl create deployment nginx --image=nginx` <br>
-   Custom deployment if you want to edit or modify. Open deployment.yaml make the changes and save it.<br>
+-   Custom deployment if you want to edit or modify. Open deployment.yaml make the changes and save it.<br>
    `$kubectl create deployment nginx --image=nginx -o yaml --dry-run=client > deployment.yaml` <br>
-   Once changes saved then,<br>
+-   Once changes saved then,<br>
    `$kubectl apply -f deployment.yaml`<br>
-   To verify deployment,<br>
+-   To verify deployment,<br>
    `$kubectl get deployment`<br>
    `$kubectl describe deployment nginx`<br>
-   To scale deployment = 2<br>
+-   To scale deployment = 2<br>
    `$kubectl scale deployment nginx replicas=2`<br>
-   To expose deployment on port = 80 as a ClusterIP or accessing service within the Cluster<br>
+-   To expose deployment on port = 80 as a ClusterIP or accessing service within the Cluster<br>
    `$kubectl expose deployment nginx --name=nginx-service --port=80 --targetPort=80 --type=ClusterIP`<br>
-   Here is the sample deployment using dry run<br>
-      `$kubectl create deployment nginx --image=nginx -o yaml --dry-run=client`
+-   Here is the sample deployment using dry run<br>
+      `$kubectl create deployment nginx --image=nginx:1.12 -o yaml --dry-run=client`
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -63,10 +64,22 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:1.12
         ports:
         - containerPort: 80
 ```
+-   Deployment rollout and undo rollout<br>
+   a. Deploying nginx:1.12 <br>
+      `kubectl create deployment nginx-deploy --image=nginx:1.12`<br>
+   b. Updating image to 1.13 i.e. rollout<br>
+       Check the name of nginx container<br>
+      `kubectl describe deployment nginx-deploy`<br>
+      `kubectl set image deployment/nginx-deploy nginx=1.13 --record=true`<br>
+   c. Check rollout history<br>
+      `kubectl rollout deployment nginx-deploy history`<br>
+   d. Undo rollout<br>
+      `kubectl rollout deployment nginx-deploy undo`<br>
+      
    ##### Note: Do not use `kubectl run nginx --image-nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
    
 2. Pod
