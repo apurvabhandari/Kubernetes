@@ -309,7 +309,8 @@ spec:
 
 ### 7. Network policy <br>
 - Here need to undertsand the scenario  and create network policy or label pod. Ref - [kubernetes network policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)<br>
-`kubectl label pod nginx env=prod`
+`kubectl get pods --show-labels`<br>
+`kubectl label pod redis role=db`
 ```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
