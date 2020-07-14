@@ -44,6 +44,29 @@
    `kubectl scale deployment nginx replicas=2`<br>
    To expose deployment on port = 80 as a ClusterIP or accessing service within the Cluster<br>
    `kubectl expose deployment nginx --name=nginx-service --port=80 --targetPort=80 --type=ClusterIP`<br>
+   Here is the sample deployment using dry run<br>
+      `kubectl create deployment nginx --image=nginx -o yaml --dry-run=client`
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+```
    ##### Note: Do not use `kubectl run nginx --image-nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
    
 2. Pod
