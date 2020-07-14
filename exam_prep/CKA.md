@@ -167,7 +167,7 @@ spec:
     emptyDir: {}
 ```
 ### 4. DaemonSet <br>
-- Create DaemonSet or Deploy DeaemonSet so that every node contain at least have 1 pod runing on it Ref [kubernetes DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/#writing-a-daemonset-spec)<br>
+- Create DaemonSet or Deploy DeaemonSet so that every node contain at least have 1 pod runing on it Ref - [kubernetes DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/#writing-a-daemonset-spec)<br>
 ```
 apiVersion: apps/v1
 kind: DaemonSet
