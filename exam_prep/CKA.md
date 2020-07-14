@@ -12,7 +12,7 @@
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
 - For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control+ insert` for paste - `shift + insert` keep this handy.
-- Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim` a file editor, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
+- Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim`, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
 - This is an actual hands-on practical exam. So please do not ask for dumps or questions that appear in the exam.
 - Now let's start with actual exam preparation
 ## Contents:
@@ -82,7 +82,7 @@ spec:
    d. Undo rollout<br>
       `kubectl rollout undo deployment nginx-deploy`<br>
       
-   ##### Note: Do not use `kubectl run nginx --image-nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
+   ##### Note: Do not use `kubectl run nginx --image=nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
    
 ### 2. Pod <br>
 - Create pod Ref - [kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates)<br>
@@ -102,6 +102,9 @@ spec:
     name: nginx
 ```
 - Expose pod - please check deployment expose<br>
+- Check exposed pod from another pod or accessing one pod from another pod
+`kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it ping nginx-service`
+`kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it netstat nginx-service`
 - StaticPod Ref- [kubernetes StaticPod](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)<br>
   a. create pod by dry-run<br>
      `kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > staticpod.yaml`<br>
@@ -189,6 +192,44 @@ spec:
         image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
 ```
 ### 5. secret<br>
+- Create secret name=mysecret from username:testuser, password:iluvtests Ref - [kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)<br>
+  `kubectl create secret generic mysecret --from-literal=username=testuser --from-literal=password=iluvtests`
+- secret as a environment variables
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-env-pod
+spec:
+  containers:
+  - name: mycontainer
+    image: redis
+    env:
+      - name: SECRET_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: mysecret
+            key: username
+```
+- secret as a volume mount
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: redis
+    volumeMounts:
+    - name: foo
+      mountPath: "/etc/foo"
+      readOnly: true
+  volumes:
+  - name: foo
+    secret:
+      secretName: mysecret
+```
 
 ### 6. pv & pvc <br>
 
