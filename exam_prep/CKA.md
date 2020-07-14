@@ -193,8 +193,70 @@ spec:
 ### 6. pv & pvc <br>
 
 ### 7. network policy <br>
+- Here need to undertsand the scenario  and create network policy or label pod. Ref - [kubernetes network policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)<br>
+`kubectl label pod nginx env=prod`
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 6379
+```
 
-### 8. security context<br>
+### 8. Security Context<br>
+- Set capabilities for Container Ref - [kubernetes security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)<br>
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-demo-4
+spec:
+  containers:
+  - name: sec-ctx-4
+    image: gcr.io/google-samples/node-hello:1.0
+    securityContext:
+      capabilities:
+        add: ["SYS_TIME"]
+```
+- securityContext runAsUser: 1000 for pod
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-demo
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+  volumes:
+  - name: sec-ctx-vol
+    emptyDir: {}
+  containers:
+  - name: sec-ctx-demo
+    image: busybox
+    command: [ "sh", "-c", "sleep 1h" ]
+    volumeMounts:
+    - name: sec-ctx-vol
+      mountPath: /data/demo
+    securityContext:
+      allowPrivilegeEscalation: false
+```
 
 ### 9. RBAC<br>
 
@@ -241,7 +303,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 
 ### 12. Cluster troubleshoot<br>
 - Check master node and worker is running or not<br>
-- Check all componetes are running or not. like ETCD, kubelet, kubeschedular, etc<br>
+- Check all componetes are running or not. like ETCD, kubelet, kubescheduler, etc<br>
 - Check all path verifing all are on correct path in config and actual. like cert path, config path, kubeconfig file<br>
 - Check logs of master components which are failing.<br>
 - If the component is running on system like kubelet then check in `/var/log/messages` or `/var/log/syslog` or `journalctl -u kubelet` <br>
