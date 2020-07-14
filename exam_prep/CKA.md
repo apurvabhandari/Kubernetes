@@ -123,10 +123,15 @@ spec:
   - image: redis
     name: redis
 ```
-- Check pod logs <br>
-   `kubectl logs nginx`<br>
-- Check pod failure <br>
-   `kubectl describe pod nginx`<br>
+- Troubleshoot over pod or deployment
+   a. Check pod logs <br>
+      `kubectl logs nginx`<br>
+   b. Check pod failure <br>
+      `kubectl describe pod nginx`<br>
+   c. Edit pod
+      `kubectl edit pod nginx`
+   d. login into pod
+      `kubectl exec -it nginx sh`
    
 ### 3. initContainer<br>
 - Create normal pod by dry-run and add initContainer spec in it. Here init container is downloading index.html before start of actual nginx container Ref - [kubernetes initContainer](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/#create-a-pod-that-has-an-init-container)<br>
