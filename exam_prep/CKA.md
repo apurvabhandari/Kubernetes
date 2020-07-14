@@ -32,20 +32,20 @@
 ### 1. Deployment <br>
    Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
    To create simple deployment <br>
-   `kubectl create deployment nginx --image=nginx` <br>
+   `$kubectl create deployment nginx --image=nginx` <br>
    Custom deployment if you want to edit or modify. Open deployment.yaml make the changes and save it.<br>
-   `kubectl create deployment nginx --image=nginx -o yaml --dry-run=client > deployment.yaml` <br>
+   `$kubectl create deployment nginx --image=nginx -o yaml --dry-run=client > deployment.yaml` <br>
    Once changes saved then,<br>
-   `kubectl apply -f deployment.yaml`<br>
+   `$kubectl apply -f deployment.yaml`<br>
    To verify deployment,<br>
-   `kubectl get deployment`<br>
-   `kubectl describe deployment nginx`<br>
+   `$kubectl get deployment`<br>
+   `$kubectl describe deployment nginx`<br>
    To scale deployment = 2<br>
-   `kubectl scale deployment nginx replicas=2`<br>
+   `$kubectl scale deployment nginx replicas=2`<br>
    To expose deployment on port = 80 as a ClusterIP or accessing service within the Cluster<br>
-   `kubectl expose deployment nginx --name=nginx-service --port=80 --targetPort=80 --type=ClusterIP`<br>
+   `$kubectl expose deployment nginx --name=nginx-service --port=80 --targetPort=80 --type=ClusterIP`<br>
    Here is the sample deployment using dry run<br>
-      `kubectl create deployment nginx --image=nginx -o yaml --dry-run=client`
+      `$kubectl create deployment nginx --image=nginx -o yaml --dry-run=client`
 ```
 apiVersion: apps/v1
 kind: Deployment
