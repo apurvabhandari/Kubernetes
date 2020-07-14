@@ -12,7 +12,7 @@
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
 
 ## Exam Resources 
-- [CKA & CKAD](./exam_prep/readme.md)<br>
+- [CKA & CKAD](./exam_prep/README.md)<br>
 
 ## My Talks Slides
 - Multi-Stage Build and Build Mount with Docker [Build Mount](./slides/Multi-StageBuildBuildMountWithDocker.pdf)<br>
