@@ -33,34 +33,35 @@
 ### 1. Deployment <br>
 -   Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
 -   To create simple deployment <br>
-   `$kubectl create deployment nginx --image=nginx` <br>
+   `kubectl create deployment nginx-deploy --image=nginx` <br>
 -   Custom deployment if you want to edit or modify. Open deployment.yaml make the changes and save it.<br>
-   `$kubectl create deployment nginx --image=nginx -o yaml --dry-run=client > deployment.yaml` <br>
+   `kubectl create deployment nginx-deploy --image=nginx -o yaml --dry-run=client > deployment.yaml` <br>
 -   Once changes saved then,<br>
-   `$kubectl apply -f deployment.yaml`<br>
+   `kubectl apply -f deployment.yaml`<br>
 -   To verify deployment,<br>
-   `$kubectl get deployment`<br>
-   `$kubectl describe deployment nginx`<br>
+   `kubectl get deployment`<br>
+   `kubectl describe deployment nginx-deploy`<br>
 -   To scale deployment = 2<br>
-   `$kubectl scale deployment nginx replicas=2`<br>
+   `kubectl scale deployment nginx-deploy --replicas=2`<br>
 -   To expose deployment on port = 80 as a ClusterIP or accessing service within the Cluster<br>
-   `$kubectl expose deployment nginx --name=nginx-service --port=80 --targetPort=80 --type=ClusterIP`<br>
+   `kubectl expose deployment nginx-deploy --name=nginx-service --port=80 --target-port=80 --type=ClusterIP`<br>
+   `kubectl get svc`<br>
 -   Here is the sample deployment using dry run<br>
-      `$kubectl create deployment nginx --image=nginx:1.12 -o yaml --dry-run=client`
+      `kubectl create deployment nginx --image=nginx:1.12 -o yaml --dry-run=client`
 ```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-deploy
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-deply
   replicas: 1
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-deploy
     spec:
       containers:
       - name: nginx
@@ -68,40 +69,82 @@ spec:
         ports:
         - containerPort: 80
 ```
+   `kubectl apply -f deployment.yaml`
 -   Deployment rollout and undo rollout<br>
    a. Deploying nginx:1.12 <br>
       `kubectl create deployment nginx-deploy --image=nginx:1.12`<br>
    b. Updating image to 1.13 i.e. rollout<br>
        Check the name of nginx container<br>
       `kubectl describe deployment nginx-deploy`<br>
-      `kubectl set image deployment/nginx-deploy nginx=1.13 --record=true`<br>
+      `kubectl set image deployment/nginx-deploy nginx=nginx:1.13 --record=true`<br>
    c. Check rollout history<br>
-      `kubectl rollout deployment nginx-deploy history`<br>
+      `kubectl rollout history deployment nginx-deploy`<br>
    d. Undo rollout<br>
-      `kubectl rollout deployment nginx-deploy undo`<br>
+      `kubectl rollout undo deployment nginx-deploy`<br>
       
    ##### Note: Do not use `kubectl run nginx --image-nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
    
-2. Pod
-3. Multicontainer
+### 2. Pod <br>
+- Create pod Ref [kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates)<br>
+`kubectl run nginx-pod --image=nginx`<br>
+- Edit or modify before runing pod by dry-run<br>
+`kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > pod.yaml`<br>
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+```
+- Expose pod - please check deployment expose<br>
+- StaticPod Ref [kubernetes StaticPod](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)<br>
+  a. create pod by dry-run<br>
+     `kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > staticpod.yaml`<br>
+  b. copy staticpod.yaml file by `scp` to worker node and keep in `/etc/kubernetes/manifest` or check staticPodPath path from config.yaml and place yaml file on the same<br>
+  c. check pod is up or not<br>
+     `kubectl get pod`<br>
+- Multi-container pod with nginx and redis - copy spec from pod template<br>
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: multicontainer
+  name: multicontainer
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+  - image: redis
+    name: redis
+```
+- Check pod logs <br>
+  `kubectl logs nginx`<br>
+- Check pod failure <br>
+  `kubectl describe pod nginx`<br>
+  
 4. secret
 5. pv & pvc
 6. cluster installation
 7. initContainer
 8. DaemonSet
 9. jsonpath
-10. Deployment rollout
-11. pod scale
-12. pod expose
+
+
+
 13. namespace create
 14. cluster troubleshoot
-15. static pod
+
 16. network policy
 17. rbac
 18. rolebinding and clusterbiding
 19. ETCD backup
 
-21. pod troubleshoot
 16. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
 ## My CKA certificate
