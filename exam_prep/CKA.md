@@ -9,7 +9,7 @@
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
 - For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control+ insert` for paste - `shift + insert` keep this handy.
-- Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim` a file editor, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet` or redirection of output into a file, maybe file permission, access denied.
+- Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim` a file editor, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
 - Now let's start with actual exam preparation
 ### Contents:
 - Application Lifecycle Management — 8%
@@ -36,8 +36,15 @@
 11. pod scale
 12. pod expose
 13. namespace create
-14. troubleshoot
-15. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
+14. cluster troubleshoot
+15. static pod
+16. network policy
+17. rbac
+18. rolebinding and clusterbiding
+19. ETCD backup
+20. multi-container
+21. pod troubleshoot
+16. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
 # Here is my certificate - CKA
 
