@@ -240,9 +240,26 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 `kubectl get nodes`<br>
 
 ### 12. Cluster troubleshoot<br>
+- Check master node and worker is running or not<br>
+- Check all componetes are running or not. like ETCD, kubelet, kubeschedular, etc<br>
+- Check all path verifing all are on correct path in config and actual. like cert path, config path, kubeconfig file<br>
+- Check logs of master components which are failing.<br>
+- If the component is running on system like kubelet then check in `/var/log/messages` or `/var/log/syslog` or `journalctl -u kubelet` <br>
 
 ### 13. jsonpath<br>
+- Examples Ref - [kubernetes jsonpath](https://kubernetes.io/docs/reference/kubectl/jsonpath/)<br>
+```
+# Get the version label of all pods with label app=cassandra
+kubectl get pods --selector=app=cassandra -o  jsonpath='{.items[*].metadata.labels.version}'
+# Get ExternalIPs of all nodes
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP")].address}'
+# List Events sorted by timestamp
+kubectl get events --sort-by=.metadata.creationTimestamp
+# All images running in a cluster
+kubectl get pods -A -o=custom-columns='DATA:spec.containers[*].image'
 
+kubectl get pv --sort-by=.spec.capacity.storage
+```
 ### 14. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
 ## My CKA certificate
