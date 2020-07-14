@@ -161,24 +161,47 @@ spec:
   - name: workdir
     emptyDir: {}
 ```
-4. secret
-5. pv & pvc
-6. cluster installation
+### 4. DaemonSet <br>
+- Create DaemonSet or Deploy DeaemonSet so that every node contain at least have 1 pod runing on it Ref [kubernetes DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/#writing-a-daemonset-spec)<br>
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-elasticsearch
+  labels:
+    k8s-app: fluentd-logging
+spec:
+  selector:
+    matchLabels:
+      name: fluentd-elasticsearch
+  template:
+    metadata:
+      labels:
+        name: fluentd-elasticsearch
+    spec:
+      containers:
+      - name: fluentd-elasticsearch
+        image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+```
+### 5. secret<br>
 
-8. DaemonSet
-9. jsonpath
+### 6. pv & pvc <br>
 
+### 7. network policy <br>
 
+### 8. security context<br>
 
-13. namespace create
-14. cluster troubleshoot
+### 9. RBAC<br>
 
-16. network policy
-17. rbac
-18. rolebinding and clusterbiding
-19. ETCD backup
+### 10. ETCD Backup<br>
 
-16. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
+### 11. Cluster Installation<br>
+
+### 12. Cluster troubleshoot<br>
+
+### 13. jsonpath<br>
+
+### 14. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
 ## My CKA certificate
 
