@@ -196,7 +196,7 @@ spec:
 ### 5. secret<br>
 - Create secret name=mysecret from username:testuser, password:iluvtests Ref - [kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)<br>
   `kubectl create secret generic mysecret --from-literal=username=testuser --from-literal=password=iluvtests`
-- secret as a environment variables
+- secret as a environment variables SECRET_USERNAME
 ```
 apiVersion: v1
 kind: Pod
@@ -213,7 +213,7 @@ spec:
             name: mysecret
             key: username
 ```
-- secret as a volume mount
+- secret as a volume mount path /etc/foo 
 ```
 apiVersion: v1
 kind: Pod
@@ -234,6 +234,7 @@ spec:
 ```
 
 ### 6. pv & pvc <br>
+
 
 ### 7. network policy <br>
 - Here need to undertsand the scenario  and create network policy or label pod. Ref - [kubernetes network policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)<br>
