@@ -11,7 +11,8 @@
 - For kubernetes cluster installation of master and worker nodes - Do not go for KTHW (Kubernetes The Hard Way). It is clearly mentioned that install clusters with kubeadm only. So be handy only with kubeadm and kubeadm flags and options.
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
-- For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control+ insert` for paste - `shift + insert` keep this handy.
+- For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control + insert` for paste - `shift + insert` keep this handy. 
+- If you are heavy linux user please avoid `control + w` this will close your browser session. Only one exam tab and one more tab is allowed to open in browser.
 - Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim`, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
 - This is an actual hands-on practical exam. So please do not ask for dumps or questions that appear in the exam.
 - Now let's start with actual exam preparation
@@ -193,7 +194,7 @@ spec:
       - name: fluentd-elasticsearch
         image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
 ```
-### 5. secret<br>
+### 5. Secret<br>
 - Create secret name=mysecret from username:testuser, password:iluvtests Ref - [kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)<br>
   `kubectl create secret generic mysecret --from-literal=username=testuser --from-literal=password=iluvtests`
 - secret as a environment variables SECRET_USERNAME
@@ -233,7 +234,7 @@ spec:
       secretName: mysecret
 ```
 
-### 6. pv & pvc <br>
+### 6. PersistentVolume & PersistentVolumeClaim <br>
 - Create pv Ref - [kubernetes pv](https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/)<br>
 ```
 apiVersion: v1
@@ -306,7 +307,7 @@ spec:
     emptyDir: {}
 ```
 
-### 7. network policy <br>
+### 7. Network policy <br>
 - Here need to undertsand the scenario  and create network policy or label pod. Ref - [kubernetes network policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)<br>
 `kubectl label pod nginx env=prod`
 ```
@@ -332,7 +333,7 @@ spec:
       port: 6379
 ```
 
-### 8. Security Context<br>
+### 8. SecurityContext<br>
 - Set capabilities for Container Ref - [kubernetes security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)<br>
 ```
 apiVersion: v1
@@ -373,6 +374,24 @@ spec:
 ```
 
 ### 9. RBAC<br>
+- csr and approve csr from .csr file Ref - [kubernetes csr](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/)<br>
+```
+apiVersion: certificates.k8s.io/v1beta1
+kind: CertificateSigningRequest
+metadata:
+  name: my-svc
+spec:
+  request: $(cat server.csr | base64 | tr -d '\n')
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth
+```
+`kubectl certificate approve my-svc`
+- create role who can get, list, watch, update, delete the pod<br> Ref - [kubernetes rbac](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#command-line-utilities)<br>
+`kubectl create role devuser --verb=get,list,watch,update,delete --resource-name=pods`<br>
+- create rolebindings<br>
+`kubectl create rolebinding newrole --clusterrole=view --serviceaccount=default:myapp --namespace=default`<br>
 
 ### 10. ETCD Backup<br>
 - Taking backup Ref - [kubernetes etcd backup](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#built-in-snapshot)<br>
