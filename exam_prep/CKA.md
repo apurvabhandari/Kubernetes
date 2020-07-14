@@ -86,9 +86,9 @@ spec:
    
 ### 2. Pod <br>
 - Create pod Ref [kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates)<br>
-`kubectl run nginx-pod --image=nginx`<br>
+  `kubectl run nginx-pod --image=nginx`<br>
 - Edit or modify before runing pod by dry-run<br>
-`kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > pod.yaml`<br>
+  `kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > pod.yaml`<br>
 ```
 apiVersion: v1
 kind: Pod
@@ -124,14 +124,47 @@ spec:
     name: redis
 ```
 - Check pod logs <br>
-  `kubectl logs nginx`<br>
+   `kubectl logs nginx`<br>
 - Check pod failure <br>
-  `kubectl describe pod nginx`<br>
-  
+   `kubectl describe pod nginx`<br>
+   
+### 3. initContainer<br>
+- Create normal pod by dry-run and add initContainer spec in it. Here init container is downloading index.html before start of actual nginx container Ref - [kubernetes initContainer](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/#create-a-pod-that-has-an-init-container)<br>
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-demo
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: workdir
+      mountPath: /usr/share/nginx/html
+  # These containers are run during pod initialization
+  initContainers:
+  - name: install
+    image: busybox
+    command:
+    - wget
+    - "-O"
+    - "/work-dir/index.html"
+    - http://kubernetes.io
+    volumeMounts:
+    - name: workdir
+      mountPath: "/work-dir"
+  dnsPolicy: Default
+  volumes:
+  - name: workdir
+    emptyDir: {}
+```
 4. secret
 5. pv & pvc
 6. cluster installation
-7. initContainer
+
 8. DaemonSet
 9. jsonpath
 
