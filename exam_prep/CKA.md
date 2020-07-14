@@ -31,7 +31,7 @@
 #### In case if you want to change namespace `kubectl config set-context $(kubectl config current-context) --namespace=default`
 ## Preparation
 ### 1. Deployment <br>
--   Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
+-   Refer Deployment doc for more details Ref - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
 -   To create simple deployment <br>
    `kubectl create deployment nginx-deploy --image=nginx` <br>
 -   Custom deployment if you want to edit or modify. Open deployment.yaml make the changes and save it.<br>
@@ -85,7 +85,7 @@ spec:
    ##### Note: Do not use `kubectl run nginx --image-nginx --restart=Always` to create deployment as it's been deprecated in v1.18<br>
    
 ### 2. Pod <br>
-- Create pod Ref [kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates)<br>
+- Create pod Ref - [kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates)<br>
   `kubectl run nginx-pod --image=nginx`<br>
 - Edit or modify before runing pod by dry-run<br>
   `kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > pod.yaml`<br>
@@ -102,7 +102,7 @@ spec:
     name: nginx
 ```
 - Expose pod - please check deployment expose<br>
-- StaticPod Ref [kubernetes StaticPod](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)<br>
+- StaticPod Ref- [kubernetes StaticPod](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)<br>
   a. create pod by dry-run<br>
      `kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > staticpod.yaml`<br>
   b. copy staticpod.yaml file by `scp` to worker node and keep in `/etc/kubernetes/manifest` or check staticPodPath path from config.yaml and place yaml file on the same<br>
@@ -123,15 +123,15 @@ spec:
   - image: redis
     name: redis
 ```
-- Troubleshoot over pod or deployment
+- Troubleshoot over pod or deployment<br>
    a. Check pod logs <br>
       `kubectl logs nginx`<br>
    b. Check pod failure <br>
       `kubectl describe pod nginx`<br>
-   c. Edit pod
-      `kubectl edit pod nginx`
-   d. login into pod
-      `kubectl exec -it nginx sh`
+   c. Edit pod<br>
+      `kubectl edit pod nginx`<br>
+   d. login into pod<br>
+      `kubectl exec -it nginx sh`<br>
    
 ### 3. initContainer<br>
 - Create normal pod by dry-run and add initContainer spec in it. Here init container is downloading index.html before start of actual nginx container Ref - [kubernetes initContainer](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/#create-a-pod-that-has-an-init-container)<br>
