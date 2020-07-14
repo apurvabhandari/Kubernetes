@@ -28,7 +28,7 @@
 - Troubleshooting — 10%
 
 #### For creating any resource please use dry run at the end and save it in file so that it will be easy to deploy - pod, deployment, service, etc `-o yaml --dry-run=client` <br>
-
+## Preparation
 ### 1. Deployment <br>
    Refer Deployment doc for more details - [kubernetes deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)<br>
    To create simple deployment <br>
@@ -77,3 +77,5 @@
 ### Creator
 Do reach out to me for any query regarding the exam.
 - [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
+How to start ?
+- Check this [References](https://github.com/apurvabhandari/Kubernetes/blob/master/exam_prep/README.md)<br>
