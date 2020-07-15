@@ -12,9 +12,10 @@
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
 - For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control + insert` for paste - `shift + insert` keep this handy. 
-- If you are a heavy linux user please avoid control + w this will close your browser session. Only the exam tab and one more tab (kubernetes.io and subdomain) is allowed to open in the browser.
+- If you are a heavy linux user please avoid `control + w` this will close your browser session. Only the exam tab and one more tab (kubernetes.io and subdomain) is allowed to open in the browser.
 - Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim`, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
 - This is an actual hands-on practical exam. So please do not ask for dumps or questions that appear in the exam.
+- For exam instructions please go to cncf official website or you will get at the booking the exam slot.
 - Now let's start with actual exam preparation
 ## Contents:
 - Application Lifecycle Management — 8%
@@ -488,4 +489,4 @@ Do reach out to me for any query regarding the exam.
 - [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)<br>
 
 How to start ? <br>
-- Check this [References](https://github.com/apurvabhandari/Kubernetes/blob/master/exam_prep/README.md#references)<br>
+- Check Learning Resources [References](https://github.com/apurvabhandari/Kubernetes/blob/master/exam_prep/README.md#references)<br>
