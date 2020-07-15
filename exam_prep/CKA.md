@@ -289,7 +289,7 @@ spec:
         - mountPath: "/usr/share/nginx/html"
           name: task-pv-storage
 ```
-- pod with emptyDir{} i.e. data should be deleted if pod delete and mount on /cache Ref - [kubernetes pod with emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#example-pod)<br>
+- pod with emptyDir{} i.e. data should be deleted if pod delete and mount on /cache Ref - [kubernetes emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#example-pod)<br>
 ```
 apiVersion: v1
 kind: Pod
@@ -389,7 +389,7 @@ spec:
   - server auth
 ```
 `kubectl certificate approve my-svc`
-- create role who can get, list, watch, update, delete the pod<br> Ref - [kubernetes rbac](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#command-line-utilities)<br>
+- create role who can get, list, watch, update, delete the pod Ref - [kubernetes rbac](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#command-line-utilities)<br>
 `kubectl create role devuser --verb=get,list,watch,update,delete --resource-name=pods`<br>
 - create rolebindings<br>
 `kubectl create rolebinding newrole --clusterrole=view --serviceaccount=default:myapp --namespace=default`<br>
@@ -457,6 +457,22 @@ kubectl get pods -A -o=custom-columns='DATA:spec.containers[*].image'
 kubectl get pv --sort-by=.spec.capacity.storage
 ```
 ### 14. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
+
+## Common Mistakes
+- Wrong indentation in yaml file
+- Deployment in wrong namespace
+- Checking pod in wrong namespace
+- Adding labels to deployment and pod
+- Recheck or verify the deployment or pod by 1/1 or 2/2 in Ready state.
+- If you are applying any yaml file then check if all mandatory fields are present or not. Eg DaemonSet or Network Policy.
+- Check deployment for DaemonSet, whether it is running on all nodes or not.
+- For initContainer the container is up or not with 1/1 after Init1:1
+- For jsonpath output, check whether the output is in correct format or not as per question.
+- While storing output checks you have access to the mentioned location and once stored verify with `cat` command.
+- Do not waste your time solving any question where you stuck for a long time.
+- Instead of creating manual yaml files, use kubernetes.io and copy paste the block in the file editor.
+- For troubleshooting/installation of clusters, check nodes are up and running.
+- Most Important - Do not delete or recreate existing resources. You are only allowed to modify it. Do not try to export, delete and create those resources. Where you can create, delete, update your resources that have been asked in exam. 
 
 ## My CKA certificate
 
