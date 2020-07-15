@@ -1,4 +1,4 @@
-# Certified Kubernetes Administrator (CKA)
+# Certified Kubernetes Administrator (CKA) with v1.18
 <p align="center">
   <img width="300" height="300" src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/exam_prep/kubernetes-cka-logo.png">
 </p>
