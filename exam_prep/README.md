@@ -23,3 +23,4 @@
 - [Udemy CKAD Mumshad Course](https://www.udemy.com/course/certified-kubernetes-application-developer/)<br>
 - [CKAD Exercises](https://github.com/dgkanatsios/CKAD-exercises)<br>
 - [Practice Enough With These 150 Questions for the CKAD Exam](https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552)<br>
+- [Practice Examples, Dumps & Tips — CKA & CKAD (Certified Kubernetes Administrator and Developer) Exam by CNCF](https://medium.com/@sensri108/practice-examples-dumps-tips-for-cka-ckad-certified-kubernetes-administrator-exam-by-cncf-4826233ccc27)<br>
