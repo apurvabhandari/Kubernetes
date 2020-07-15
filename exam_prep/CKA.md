@@ -12,7 +12,7 @@
 - Before the exam please just ask the experienced one who appeared for the exam recently.
 - I found that bash autocompletion for commands were missing for both root and non-root terminal. Refer [This](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash)<br>
 - For copy and paste the blogs from docs you do not have a limit for copying and pasting that number of lines. Here to copy paste faster, use keyboard shortcuts copy - `control + insert` for paste - `shift + insert` keep this handy. 
-- If you are heavy linux user please avoid `control + w` this will close your browser session. Only one exam tab and one more tab is allowed to open in browser.
+- If you are a heavy linux user please avoid control + w this will close your browser session. Only the exam tab and one more tab (kubernetes.io and subdomain) is allowed to open in the browser.
 - Before appearing for the exam you should have a basic understanding of Linux and it's compulsory. i.e. `vi/vim`, `cat`, `sudo`, `sudo su -`, `ssh`, `nslookup`, `ping`, `telnet`, `scp`, `mkdir`, `touch`, `awk`, `grep`, `find` or redirection of output into a file, maybe file permission, access denied.
 - This is an actual hands-on practical exam. So please do not ask for dumps or questions that appear in the exam.
 - Now let's start with actual exam preparation
@@ -140,7 +140,7 @@ spec:
       `kubectl exec -it nginx sh`<br>
    
 ### 3. initContainer<br>
-- Create normal pod by dry-run and add initContainer spec in it. Here init container is downloading index.html before start of actual nginx container Ref - [kubernetes initContainer](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/#create-a-pod-that-has-an-init-container)<br>
+- Create a normal pod by dry-run and add initContainer spec in it. Here init container is downloading index.html before start of actual nginx container Ref - [kubernetes initContainer](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/#create-a-pod-that-has-an-init-container)<br>
 ```
 apiVersion: v1
 kind: Pod
@@ -173,7 +173,7 @@ spec:
     emptyDir: {}
 ```
 ### 4. DaemonSet <br>
-- Create DaemonSet or Deploy DeaemonSet so that every node contain at least have 1 pod runing on it Ref - [kubernetes DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/#writing-a-daemonset-spec)<br>
+- Create DaemonSet or Deploy DaemonSet so that every node contain at least have 1 pod running on it Ref - [kubernetes DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/#writing-a-daemonset-spec)<br>
 ```
 apiVersion: apps/v1
 kind: DaemonSet
@@ -253,7 +253,7 @@ spec:
     path: "/mnt/data"
 ```
 `kubectl get pv`
-- Create pvc - it should be in bound state once pvc is been created. remeber storageClassName should be same as pv and also check for accessModes
+- Create pvc - it should be in a bound state once pvc is created. Remember storageClassName should be same as pv and also check for accessModes
 ```
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -308,7 +308,7 @@ spec:
 ```
 
 ### 7. Network policy <br>
-- Here need to undertsand the scenario  and create network policy or label pod. Ref - [kubernetes network policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)<br>
+- Here we need to understand the scenario and create a network policy or label pod. Ref - [kubernetes network policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)<br>
 `kubectl get pods --show-labels`<br>
 `kubectl label pod redis role=db`
 ```
@@ -437,8 +437,8 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 
 ### 12. Cluster troubleshoot<br>
 - Check master node and worker is running or not<br>
-- Check all componetes are running or not. like ETCD, kubelet, kubescheduler, etc<br>
-- Check all path verifing all are on correct path in config and actual. like cert path, config path, kubeconfig file<br>
+- Check all components are running or not. like ETCD, kubelet, kube scheduler, etc<br>
+- Check all paths verifying all are on the correct path in config and actual. like cert path, config path, kubeconfig file<br>
 - Check logs of master components which are failing.<br>
 - If the component is running on system like kubelet then check in `/var/log/messages` or `/var/log/syslog` or `journalctl -u kubelet` <br>
 
@@ -453,7 +453,7 @@ kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP
 kubectl get events --sort-by=.metadata.creationTimestamp
 # All images running in a cluster
 kubectl get pods -A -o=custom-columns='DATA:spec.containers[*].image'
-
+# sort by capacity
 kubectl get pv --sort-by=.spec.capacity.storage
 ```
 ### 14. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
