@@ -459,10 +459,11 @@ kubectl get pv --sort-by=.spec.capacity.storage
 ### 14. [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)<br>
 
 ## Common Mistakes
-- Wrong indentation in yaml file
-- Deployment in wrong namespace
-- Checking pod in wrong namespace
-- Adding labels to deployment and pod
+- Make sure that you have switched to correct context/cluster or not. That is mentioned on top of every question.
+- Wrong indentation in yaml file.
+- Deployment in wrong namespace.
+- Checking pod in wrong namespace.
+- Adding labels to deployment and pod.
 - Recheck or verify the deployment or pod by 1/1 or 2/2 in Ready state.
 - If you are applying any yaml file then check if all mandatory fields are present or not. Eg DaemonSet or Network Policy.
 - Check deployment for DaemonSet, whether it is running on all nodes or not.
@@ -473,6 +474,8 @@ kubectl get pv --sort-by=.spec.capacity.storage
 - Instead of creating manual yaml files, use kubernetes.io and copy paste the block in the file editor.
 - For troubleshooting/installation of clusters, check nodes are up and running.
 - Most Important - Do not delete or recreate existing resources. You are only allowed to modify it. Do not try to export, delete and create those resources. Where you can create, delete, update your resources that have been asked in exam. 
+
+### All the Best For your Exam!!
 
 ## My CKA certificate
 
