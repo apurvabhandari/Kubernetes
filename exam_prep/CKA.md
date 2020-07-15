@@ -106,9 +106,9 @@ spec:
 - Expose pod - please check deployment expose<br>
 - Check exposed pod from another pod or accessing one pod from another pod<br>
 `kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it ping nginx-service`<br>
-`kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it netstat nginx-service`<br>
+`kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it nslookup nginx-service`<br>
 check with pod - check the pod ip consider here it is 10.0.0.1 and namespace = default<br>
-`kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it netstat 10-0-0-1.default.pod`<br>
+`kubectl run tmp --image=busybox:1.28.0 --restart=Never --rm -it nslookup 10-0-0-1.default.pod`<br>
 - StaticPod Ref- [kubernetes StaticPod](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)<br>
   a. create pod by dry-run<br>
      `kubectl run nginx-pod --image=nginx -o yaml --dry-run=client > staticpod.yaml`<br>
