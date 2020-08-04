@@ -10,7 +10,7 @@
 - [Kubernetes Debugging Sheet](./k8s-debug-cheatsheet.md)
 - [Replica Set Vs Replication Controller](./ReplicaSetVsReplicationController.md)
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
-
+- [States of a Pod](./States-of-a-Pod.md)<br>
 ## Exam Resources 
 - [CKA & CKAD](./exam_prep/README.md)<br>
 
@@ -28,7 +28,7 @@
 
 - [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
 
-Last Updated: July 7, 2020
+Last Updated: August 7, 2020
 
 ### LICENSE
 [Apache License 2.0](./LICENSE)
