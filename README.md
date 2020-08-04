@@ -11,6 +11,8 @@
 - [Replica Set Vs Replication Controller](./ReplicaSetVsReplicationController.md)
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
 - [States of a Pod](./States-of-a-Pod.md)<br>
+- [Basics of Kubernetes](./Basics-of-Kubernetes.md)<br>
+
 ## Exam Resources 
 - [CKA & CKAD](./exam_prep/README.md)<br>
 
