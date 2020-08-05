@@ -1,7 +1,9 @@
 # Kubernetes
+[![Generic badge](https://img.shields.io/badge/SUBJECT-Kubernetes-Blue.svg)](https://shields.io/)
 <p align="left">
   <img width="400" height="200" src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/kubernets-logo.png">
 </p>
+
 
 ## Kubernetes Core Concept
 - [Install and configure a multi-master Kubernetes cluster with kubeadm](./Install-and-configure-a-multi-master-Kubernetes-cluster-with-kubeadm.md)
