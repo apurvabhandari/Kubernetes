@@ -31,7 +31,7 @@
 ### Creator
 
 - [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
-- [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40Apurv_Bhandari)](https://twitter.com/Apurv_Bhandari)
+- [![Twitter URL](https://img.shields.io/twitter/follow/Apurv_Bhandari?style=social)](https://twitter.com/Apurv_Bhandari)
 
 
 Last Updated: August 7, 2020
