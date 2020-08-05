@@ -1,6 +1,7 @@
 # Kubernetes
 [![Generic badge](https://img.shields.io/badge/SUBJECT-Kubernetes-Blue.svg)](https://shields.io/)
-[![Watchers](https://img.shields.io/github/watchers/apurvabhandari/Kubernetes?style=social)
+![Watchers](https://img.shields.io/github/watchers/apurvabhandari/Kubernetes?style=social)
+![last commit](https://img.shields.io/github/last-commit/apurvabhandari/Kubernetes)
 <p align="left">
   <img width="400" height="200" src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/kubernets-logo.png">
 </p>
