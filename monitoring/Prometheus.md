@@ -65,6 +65,9 @@ There are a number of libraries and servers which help in exporting existing met
 ## Alertmanager
 The Alertmanager handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integrations such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts.
 
+## PromQL
+Prometheus provides its own query language PromQL (Prometheus Query Language) that lets users select and aggregate data. PromQL is specifically adjusted to work in convention with a Time-Series Database and therefore provides time-related query functionalities. Examples include the rate() function, the instant vector and the range vector which can provide many samples for each queried
+
 ## Sample kubernetes monitoring snippet
 ```
 scrape_configs:
