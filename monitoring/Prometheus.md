@@ -52,6 +52,11 @@ The Prometheus client libraries offer four core metric types. These are currentl
   - the count of events that have been observed, exposed as <basename>_count
   - See histograms and summaries for detailed explanations of φ-quantiles, summary usage, and differences to histograms.
  
+## PUSHING METRICS
+Occasionally you will need to monitor components which cannot be scraped. The Prometheus Pushgateway allows you to push time series from short-lived service-level batch jobs to an intermediary job which Prometheus can scrape. Combined with Prometheus's simple text-based exposition format, this makes it easy to instrument even shell scripts without a client library.
+
+## EXPORTERS AND INTEGRATIONS
+There are a number of libraries and servers which help in exporting existing metrics from third-party systems as Prometheus metrics. This is useful for cases where it is not feasible to instrument a given system with Prometheus metrics directly (for example, HAProxy or Linux system stats).
 
 ## Sample kubernetes monitoring snippet
 ```
