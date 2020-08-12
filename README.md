@@ -20,6 +20,9 @@
 ## Exam Resources 
 - [CKA & CKAD](./exam_prep/README.md)<br>
 
+## Monitoring and Alerting
+- [Prometheus](./monitoring/Prometheus.md)<br>
+
 ## My Talks Slides
 - Multi-Stage Build and Build Mount with Docker [Build Mount](./slides/Multi-StageBuildBuildMountWithDocker.pdf)<br>
 - Introduction to Kubernetes - [Kubernetes Intro](./slides/K8s_Introduction.pdf)<br>
