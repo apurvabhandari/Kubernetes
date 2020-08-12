@@ -1,4 +1,8 @@
 # Prometheus
+## Architecture
+<p align="center">
+  <img src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/monitoring/prometheus_architecture.png">
+</p>
 ## Features
 
 - a multi-dimensional data model with time series data identified by metric name and key/value pairs
@@ -55,3 +59,9 @@ scrape_configs:
     replacement: $1
     action: keep
 ```
+
+
+
+
+# Reference 
+[Prometheus.io](https://prometheus.io/)<br>
