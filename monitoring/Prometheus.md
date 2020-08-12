@@ -18,3 +18,32 @@ The Prometheus ecosystem consists of multiple components, many of which are opti
 - special-purpose exporters for services like HAProxy, StatsD, Graphite, etc.
 - an alertmanager to handle alerts
 - various support tools
+
+
+## Sample kubernetes monitoring snippet
+```
+scrape_configs:
+- job_name: 'kubernetes-apiservers'
+
+  kubernetes_sd_configs:
+  - role: pod
+
+  scheme: https
+
+  tls_config:
+    ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+
+  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+  relabel_configs:
+  - source_labels: [__meta_kubernetes_pod_label_app_type]
+    separator: ;
+    regex: (storage-app.*)
+    replacement: $1
+    action: keep
+  - source_labels: [__meta_kubernetes_pod_label_app_mode]
+    separator: ;
+    regex: (sg-.*)
+    replacement: $1
+    action: keep
+```
