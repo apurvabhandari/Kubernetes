@@ -1,7 +1,7 @@
 # Prometheus
 ## Architecture
 <p align="center">
-  <img src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/monitoring/prometheus_architecture.png">
+  <img src="https://cdn.jsdelivr.net/gh/prometheus/prometheus@c34257d069c630685da35bcef084632ffd5d6209/documentation/images/architecture.svg">
 </p>
 
 ## Features
@@ -13,6 +13,7 @@
 - pushing time series is supported via an intermediary gateway
 - targets are discovered via service discovery or static configuration
 - multiple modes of graphing and dashboarding support
+- support for hierarchical and horizontal federation
 
 ## Components
 The Prometheus ecosystem consists of multiple components, many of which are optional:
@@ -55,8 +56,14 @@ The Prometheus client libraries offer four core metric types. These are currentl
 ## PUSHING METRICS
 Occasionally you will need to monitor components which cannot be scraped. The Prometheus Pushgateway allows you to push time series from short-lived service-level batch jobs to an intermediary job which Prometheus can scrape. Combined with Prometheus's simple text-based exposition format, this makes it easy to instrument even shell scripts without a client library.
 
+## Pushgateway
+The Prometheus Pushgateway exists to allow ephemeral and batch jobs to expose their metrics to Prometheus. Since these kinds of jobs may not exist long enough to be scraped, they can instead push their metrics to a Pushgateway. The Pushgateway then exposes these metrics to Prometheus.
+
 ## EXPORTERS AND INTEGRATIONS
 There are a number of libraries and servers which help in exporting existing metrics from third-party systems as Prometheus metrics. This is useful for cases where it is not feasible to instrument a given system with Prometheus metrics directly (for example, HAProxy or Linux system stats).
+
+## Alertmanager
+The Alertmanager handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integrations such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts.
 
 ## Sample kubernetes monitoring snippet
 ```
