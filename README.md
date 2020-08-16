@@ -29,6 +29,8 @@
 - Kubernetes101 - [k8s101](./slides/Kubernetes101.pdf)<br>
 - Long Term Retention Data Monitoring with Thanos and Prometheus Stack for Kubernetes -[Thanos](./slides/Thanos_Monitoring.pdf)
 
+## Tools that help Kubernetes
+- Helm [Helm3](./helm.md)<br>
 
 ### References
 - [kubernetes.io](https://www.kubernetes.io)<br>
