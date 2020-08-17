@@ -12,6 +12,10 @@
 
 `heml install deploy_name newchart`
 
+`helm repo add repo_name repo_URL`
+
+`helm install name/deployment --version number`
+
 When dependency in chart Chart.yaml 
 `helm dep list newchart`
 
