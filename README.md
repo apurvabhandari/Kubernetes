@@ -31,7 +31,7 @@
 
 ## Tools that help Kubernetes
 - Helm [Helm3](./helm.md)<br>
-- Service Mesh [Istio](./istio.md)<br>
+- Service Mesh [Istio](./tools/istio.md)<br>
 
 ### References
 - [kubernetes.io](https://www.kubernetes.io)<br>
