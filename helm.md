@@ -16,6 +16,16 @@
 
 `helm install name/deployment --version number`
 
+`helm package mychart`
+
+`helm package mychart --destination /root/`
+
+`helm  package mychart --destination /root/ --version 1.1.0`
+
+`helm package mychart --dependency-update`
+
+
+
 When dependency in chart Chart.yaml 
 `helm dep list newchart`
 
