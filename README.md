@@ -2,6 +2,7 @@
 [![Generic badge](https://img.shields.io/badge/SUBJECT-Kubernetes-Blue.svg)](https://shields.io/)
 ![Watchers](https://img.shields.io/github/watchers/apurvabhandari/Kubernetes?style=social)
 ![last commit](https://img.shields.io/github/last-commit/apurvabhandari/Kubernetes)
+![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https://apurvabhandari.github.io/Kubernetes)
 <p align="left">
   <img width="400" height="200" src="https://raw.githubusercontent.com/apurvabhandari/kubernetes/master/kubernets-logo.png">
 </p>
@@ -41,8 +42,6 @@
 - [Apurva Bhandari](https://www.linkedin.com/in/apurvabhandari-linux/)
 - [![Twitter URL](https://img.shields.io/twitter/follow/Apurv_Bhandari?style=social)](https://twitter.com/Apurv_Bhandari)
 
-
-Last Updated: August 7, 2020
 
 ### LICENSE
 [Apache License 2.0](./LICENSE)
