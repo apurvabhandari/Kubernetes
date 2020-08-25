@@ -24,7 +24,7 @@
 ## Monitoring and Alerting
 - [Prometheus](./monitoring/Prometheus.md)<br>
 
-## My Talks Slides
+## My Talk - Slides
 - Multi-Stage Build and Build Mount with Docker [Build Mount](./slides/Multi-StageBuildBuildMountWithDocker.pdf)<br>
 - Introduction to Kubernetes - [Kubernetes Intro](./slides/K8s_Introduction.pdf)<br>
 - Kubernetes101 - [k8s101](./slides/Kubernetes101.pdf)<br>
@@ -33,6 +33,10 @@
 ## Tools that help Kubernetes
 - Helm [Helm3](./helm.md)<br>
 - Service Mesh [Istio](./tools/istio.md)<br>
+
+## DevOps
+- [Infrastructure Automation](https://github.com/apurvabhandari/InfraAuto/blob/master/README.md)
+- [Scripting](https://github.com/apurvabhandari/scripting/blob/master/README.md)
 
 ### References
 - [kubernetes.io](https://www.kubernetes.io)<br>
