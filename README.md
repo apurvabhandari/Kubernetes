@@ -17,6 +17,7 @@
 - [Kubernetes Cluster Backup for Managed Clsuer](./Kubernetes_Cluster_Backup-Managed_Cluster.md)
 - [States of a Pod](./States-of-a-Pod.md)<br>
 - [Basics of Kubernetes](./Basics-of-Kubernetes.md)<br>
+- [Kubernetes Networking](./k8score/k8s_networking.md)
 
 ## Exam Resources 
 - [CKA & CKAD](./exam_prep/README.md)<br>
