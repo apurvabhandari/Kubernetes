@@ -32,6 +32,9 @@
 - Long Term Retention Data Monitoring with Thanos and Prometheus Stack for Kubernetes -[Thanos](./slides/Thanos_Monitoring.pdf)
 - Kubernetes Networking with Istio and without Istio - [Istio Networking](./slides/Kubernetes_networking_and_Istio.pdf)
 
+## Cloud and Kubernetes
+- [AWS EKS Storage classes](./cloud/aws_eks_storageclass.md)
+
 ## Tools that help Kubernetes
 - Helm [Helm3](./helm.md)<br>
 - Service Mesh [Istio](./tools/istio.md)<br>
