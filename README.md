@@ -19,6 +19,12 @@
 - [Basics of Kubernetes](./Basics-of-Kubernetes.md)<br>
 - [Kubernetes Networking](./k8score/k8s_networking.md)
 
+## Kubernetes Concept Link
+- [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/)
+- [QoS](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+- [HorizontalPodAutoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+
+
 ## Exam Resources 
 - [CKA & CKAD](./exam_prep/README.md)<br>
 
