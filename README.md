@@ -23,6 +23,7 @@
 - [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/)
 - [QoS](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/) | [Configure Quality of Service for Pods](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
 - [HorizontalPodAutoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [PDB](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/)
 
 
 ## Exam Resources 
